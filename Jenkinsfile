@@ -3,16 +3,17 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'your_docker_username/flask_app:latest'
-        FLASK_APP_DIR = 'path/to/your/flask/app'
+        FLASK_APP_DIR = 'proj_xgb'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'edaraanand', variable: 'edaraanand')]) {
-                        git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'edaraanand'
-                    }
+                    // withCredentials([string(credentialsId: 'edaraanand', variable: 'anand-pat')]) {
+                        // git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'edaraanand'
+                        git branch: 'main', credentialsId: 'edaraanand', url: 'https://github.com/edaraanand/proj_xgb.git'
+                    // }
                 }
             }
         }
@@ -21,6 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Checking Python syntax...'
+                    sh 'ls -ltr'
                     sh 'flake8 ${FLASK_APP_DIR}'
                 }
             }
