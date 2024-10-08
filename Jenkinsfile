@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    // agent any
+    agent {
+        docker {
+            image 'python:3.8'  // Use an appropriate Python Docker image
+            args '-u root:root' // Run as root to install packages
+        }
+    }
 
     environment {
         DOCKER_IMAGE = 'your_docker_username/flask_app:latest'
@@ -7,12 +13,21 @@ pipeline {
     }
 
     stages {
+        stage('Setup Environment') {
+            steps {
+                script {
+                    echo 'Setting up the environment...'
+                    sh 'pip install flake8 bandit pytest'
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
                 script {
                     // withCredentials([string(credentialsId: 'edaraanand', variable: 'anand-pat')]) {
-                        // git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'edaraanand'
-                        git branch: 'main', credentialsId: 'edaraanand', url: 'https://github.com/edaraanand/proj_xgb.git'
+                        // git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'anand-pat'
+                    git branch: 'main', credentialsId: 'edaraanand', url: 'https://github.com/edaraanand/proj_xgb.git'
                     // }
                 }
             }
