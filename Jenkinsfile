@@ -4,6 +4,10 @@ pipeline {
         // label 'docker'
     // }
 
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
+
     environment {
         DOCKER_IMAGE = 'your_docker_username/flask_app:latest'
         FLASK_APP_DIR = 'proj_xgb'
@@ -14,6 +18,7 @@ pipeline {
             steps {
                 script {
                     echo 'Setting up the environment...'
+                    sh 'node --version'
                     // sh 'pip install flake8 bandit pytest'
                 }
             }
