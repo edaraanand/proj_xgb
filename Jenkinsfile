@@ -1,8 +1,8 @@
 pipeline {
-    // agent any
-    agent {
-        label 'docker'
-    }
+    agent any
+    // agent {
+        // label 'docker'
+    // }
 
     environment {
         DOCKER_IMAGE = 'your_docker_username/flask_app:latest'
