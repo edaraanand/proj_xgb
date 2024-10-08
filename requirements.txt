@@ -1,0 +1,7 @@
+Flask
+flask-cors
+splunk-handler
+xgboost
+numpy
+requests
+python-dotenv
