@@ -1,4 +1,5 @@
 your_project/
+```
 ├── app/
 │   ├── __init__.py
 │   ├── config.py
@@ -6,4 +7,4 @@ your_project/
 │   └── utils.py
 ├── .env
 ├── requirements.txt
-└── run.py
+└── run.py```
