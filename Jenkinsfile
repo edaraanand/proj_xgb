@@ -10,8 +10,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'github-pat', variable: 'GITHUB_PAT')]) {
-                        git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'github-pat'
+                    withCredentials([string(credentialsId: 'edaraanand', variable: 'edaraanand')]) {
+                        git url: 'https://github.com/edaraanand/proj_xgb.git', credentialsId: 'edaraanand'
                     }
                 }
             }
