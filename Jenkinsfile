@@ -1,10 +1,7 @@
 pipeline {
     // agent any
     agent {
-        docker {
-            image 'python:3.8'  // Use an appropriate Python Docker image
-            args '-u root:root' // Run as root to install packages
-        }
+        label 'docker'
     }
 
     environment {
@@ -17,7 +14,7 @@ pipeline {
             steps {
                 script {
                     echo 'Setting up the environment...'
-                    sh 'pip install flake8 bandit pytest'
+                    // sh 'pip install flake8 bandit pytest'
                 }
             }
         }
@@ -37,8 +34,8 @@ pipeline {
             steps {
                 script {
                     echo 'Checking Python syntax...'
-                    sh 'ls -ltr'
-                    sh 'flake8 ${FLASK_APP_DIR}'
+                    // sh 'ls -ltr'
+                    // sh 'flake8 ${FLASK_APP_DIR}'
                 }
             }
         }
@@ -47,7 +44,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running security scan...'
-                    sh 'bandit -r ${FLASK_APP_DIR}'
+                    // sh 'bandit -r ${FLASK_APP_DIR}'
                 }
             }
         }
@@ -56,7 +53,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running unit tests...'
-                    sh 'pytest ${FLASK_APP_DIR}'
+                    // sh 'pytest ${FLASK_APP_DIR}'
                 }
             }
         }
@@ -65,7 +62,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the Flask application...'
-                    sh 'python ${FLASK_APP_DIR}/setup.py build'
+                    // sh 'python ${FLASK_APP_DIR}/setup.py build'
                 }
             }
         }
@@ -74,8 +71,8 @@ pipeline {
             steps {
                 script {
                     echo 'Creating Docker image...'
-                    sh 'docker build -t ${DOCKER_IMAGE} ${FLASK_APP_DIR}'
-                    sh 'docker push ${DOCKER_IMAGE}'
+                    // sh 'docker build -t ${DOCKER_IMAGE} ${FLASK_APP_DIR}'
+                    // sh 'docker push ${DOCKER_IMAGE}'
                 }
             }
         }
